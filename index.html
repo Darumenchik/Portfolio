@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Портфолио Дауренбек</title>
+<style>
+body { font-family: Arial, sans-serif; margin:0; padding:0; text-align:center; background:#f2f2f2; }
+header { padding:50px 20px; background:#4a90e2; color:#fff; }
+h1,h2,p { margin:10px 0; }
+.fade-in { opacity:0; animation:fadeIn 1.5s forwards; }
+.fade-in.delay { animation-delay:0.5s; }
+@keyframes fadeIn { to{opacity:1;} }
+.slide-in { transform:translateY(20px); opacity:0; animation:slideIn 1s forwards; }
+@keyframes slideIn { to{transform:translateY(0); opacity:1;} }
+.gallery { display:flex; flex-wrap:wrap; justify-content:center; padding:20px; }
+.gallery img { width:100%; max-width:200px; margin:10px; border-radius:10px; box-shadow:0 4px 6px rgba(0,0,0,0.1); transition:transform 0.3s; cursor:pointer; }
+.gallery img:hover { transform:scale(1.05); }
+footer { padding:20px; background:#333; color:#fff; }
+@media(max-width:600px){ .gallery{flex-direction:column; align-items:center;} .gallery img{max-width:90%;} }
+#lightbox { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); display:none; justify-content:center; align-items:center; z-index:9999; }
+#lightbox img { max-width:90%; max-height:90%; border-radius:10px; }
+#closeBtn { position:absolute; top:20px; right:30px; font-size:30px; color:#fff; cursor:pointer; font-weight:bold; z-index:10000; }
+</style>
+</head>
+<body>
+<header>
+<h1 class="fade-in">Привет, я Дауренбек</h1>
+<p class="fade-in delay">Моё портфолио (только грамоты)</p>
+</header>
+<section class="gallery slide-in">
+<h2>Мои фотографии</h2>
+<img src="images/1.jpg" alt="Фото 1">
+<img src="images/2.jpg" alt="Фото 2">
+<img src="images/3.jpg" alt="Фото 3">
+<img src="images/4.jpg" alt="Фото 4">
+<img src="images/5.jpg" alt="Фото 5">
+<img src="images/6.jpg" alt="Фото 6">
+<img src="images/7.jpg" alt="Фото 7">
+<img src="images/8.jpg" alt="Фото 8">
+<img src="images/9.jpg" alt="Фото 9">
+<img src="images/10.jpg" alt="Фото 10">
+</section>
+<footer class="fade-in delay">&copy; 2010-2025 Дауренбек</footer>
+<audio autoplay loop muted>
+<source src="music/track1.mp3" type="audio/mpeg">
+</audio>
+<div id="lightbox">
+<div id="closeBtn">✖</div>
+<img src="" alt="Фото">
+</div>
+<script>
+const lightbox=document.getElementById('lightbox');
+const lightboxImg=lightbox.querySelector('img');
+const closeBtn=document.getElementById('closeBtn');
+document.querySelectorAll('.gallery img').forEach(img=>{
+    img.addEventListener('click',()=>{
+        lightbox.style.display='flex';
+        lightboxImg.src=img.src;
+    });
+});
+closeBtn.addEventListener('click',()=>{lightbox.style.display='none';});
+const audio=document.querySelector('audio');
+document.body.addEventListener('click',()=>{if(audio.paused){audio.play();audio.muted=false;}});
+</script>
+</body>
+</html>
